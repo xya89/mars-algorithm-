@@ -1,0 +1,98 @@
+---
+title: "mars()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{mars}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+# Multivariate Adaptive Regression Spline (MARS) Models
+
+Multivariatate Adaptive Regression Spline is a form of regression analysis introduced by Jerome H. Friedman in 1991. The model uses a hinge function as the interactions between bases functions, allowing a multi-dimensional model. 
+
+
+# Getting Started
+* Load the mars package. 
+* Install the package via GitHub: https://github.com/SFUStatgen/SFUStat360Projects/tree/main/Projects/ProjectSY
+
+
+```{r setup}
+library(mars)
+```
+
+
+# Create mars object
+The mars algorithm needs a control object called mars.control. 
+Initialize the object first then pass the object into mars() function. 
+```{r}
+mc <- mars.control(Mmax = 8)
+
+```
+
+# Fit a mars model. 
+For this example, we will use the mtcars data set from R.
+We will use mpg (miles per gallon) as the response variable and try to fit a model using all other variables as explanatory variables. 
+```{r}
+mod.fit <- mars(mpg~., data = mtcars, control = mc)
+
+```
+
+We can also specify which explanatory variables to use:
+```{r}
+mars(mpg~ cyl+hp+drat+wt, data = mtcars, control = mc)
+
+
+
+```
+
+
+# Print the mars object
+Once we fitted the model to the mtcars data, use `print()` method to print the model. 
+```{r}
+print(mod.fit)
+
+```
+
+The output of the print(mars) above is similar to that of the `print.lm()`.
+
+
+# Summary 
+We can print a summary of the fitted model using `summary()` method. `summary()` method takes an mars object as the argument. 
+
+```{r}
+summary(mod.fit)
+
+```
+The output from the `summary()` is very similar to that of the `summary.lm()`.
+
+
+# Plot the mars object
+The `plot()` method in the mars package allows us to visualize the multivariate model graphically. The arguement to the `plot()` is a mars object. 
+
+```{r}
+
+plot(mod.fit)
+
+```
+
+# Predict the mars object
+
+Just like in the `lm()`, we can call the `predict()` to predict the response variable using the model. 
+```{r}
+
+#predict(mod.fit, newdata = mtcars)
+
+```
+
+# Reference
+
+Jerome H. Friedman, The Annals of Statistics, Mar., 1991, Vol.19, No.1 (Mar., 1991), pp. 1-67
