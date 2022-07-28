@@ -4,7 +4,7 @@ Title: Multivariate adaptive regression spline (MARS)
 Version: 0.1.0
 Author: Sean Yang
 Maintainer: Sean Yang <xya89@sfu.ca>
-Description: Multivariate adaptive regression spline (MARS)
+Description: This is a project that performs Multivariate Adaptive Regression Spline (MARS)
     A form of regression analysis introduced by Jerome H. Friedman in 1991.
 License: GPL (>= 3)
 Encoding: UTF-8
